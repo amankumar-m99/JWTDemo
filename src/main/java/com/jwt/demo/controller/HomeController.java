@@ -21,7 +21,7 @@ public class HomeController {
 	@GetMapping("/users")
 	public List<User> getUser() {
 		System.out.println("Getting users");
-		return this.userService.getUsers();
+		return this.userService.getAllUsers();
 	}
 
 	@GetMapping("/current-user")

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jwt.demo.entity.User;
 import com.jwt.demo.model.JwtRequest;
 import com.jwt.demo.model.JwtResponse;
 import com.jwt.demo.security.JwtHelper;
+import com.jwt.demo.service.UserService;
 
 @RestController
 @RequestMapping("/auth")
@@ -32,6 +34,9 @@ public class AuthController {
 
     @Autowired
     private JwtHelper helper;
+
+    @Autowired
+    private UserService userService;
 
     private Logger logger = LoggerFactory.getLogger(AuthController.class);
 
@@ -53,6 +58,11 @@ public class AuthController {
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException(" Invalid Username or Password  !!");
         }
+    }
+
+    @PostMapping("/create-user")
+    public User createUser(@RequestBody User user) {
+    	return userService.createUser(user);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
