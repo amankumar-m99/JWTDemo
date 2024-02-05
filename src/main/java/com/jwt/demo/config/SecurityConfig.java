@@ -17,6 +17,7 @@ public class SecurityConfig {
 
 	@Autowired
 	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
